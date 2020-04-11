@@ -120,20 +120,20 @@ def train(args, log, model, dataloaders, criterion, optimizer, scheduler, binari
         log.write('\n')
             
         if isinstance(scheduler, ReduceLROnPlateau):
-            scheduler.step(val_dice, epoch)
+            scheduler.step(val_dice)
         else:
-            scheduler.step(epoch)
+            scheduler.step()
         
         # save metric checkpoint
         name = f'best_metric' 
         checkpoint.save_checkpoint(args, model, optimizer, epoch=epoch, metric_score=val_dice, step=0, keep=args.ckpt_keep, name=name)  
 
-        if val_dice > best_dice_score:
-            best_dice_score = val_dice
-        
         if val_loss < best_val_loss:
-            patience = 0.0
             best_val_loss = val_loss
+        
+        if val_dice > best_dice_score:
+            patience = 0.0
+            best_dice_score = val_dice
         else:
             patience += 1
             if patience ==10:
@@ -169,7 +169,7 @@ def run(args, log):
 
     dataloaders = {mode:get_dataloader(args.data_dir, dfs[mode], mode, args.positive_ratio, args.batch_size) for mode in ['train', 'val']}   
 
-    scheduler = get_scheduler(args, optimizer, -1, dataloaders['train'])
+    scheduler = get_scheduler(args, optimizer, last_epoch, dataloaders['train'])
 
     seed_everything()
 
@@ -192,7 +192,7 @@ def parse_args():
                     help='batch size')
     parser.add_argument('--num_epochs', type=int, default=50, 
                     help='num of epochs to train')
-    parser.add_argument('--positive_ratio', type=float, default=0.8, 
+    parser.add_argument('--positive_ratio', type=float, default=0.6, 
                     help='postive ratio rate for sliding sampling')
     parser.add_argument('--loss_weights', type=dict, default={'bce': 1, 'dice': 1, 'focal': 1},
                     help='name of optimizer to use')
@@ -200,7 +200,7 @@ def parse_args():
                     help='clipping value for gradient')
     parser.add_argument('--optimizer_name', type=str, default='adam',
                     help='name of optimizer to use')
-    parser.add_argument('--scheduler_name', type=str, default='reduce_lr_on_plateau',
+    parser.add_argument('--scheduler_name', type=str, default='cosine',
                     help='learning rate scheduler')
     parser.add_argument('--min_lr', type=float, default=1e-4,
                     help='minimum learning rate for scheduler')
@@ -245,3 +245,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
