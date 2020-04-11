@@ -25,11 +25,12 @@ def logit_to_probability(logit_mask):
     return probability_mask
 
 
-def get_models(args, ckpts):
+def get_models(args, ckpts, log):
     models = []
     for ckpt in ckpts:
         model = get_model(args).cuda()
         _= checkpoint.load_checkpoint(args, model, checkpoint=ckpt)
+        log.write(f'Loaded checkpoint from {ckpt}\n')
         model.eval()
         models.append(model)
     return models
@@ -94,12 +95,12 @@ def submit(args, log):
 
     if args.ensemble:
         ckpts = args.initial_ckpt.split(',')
-        models = get_models(args, ckpts)
+        models = get_models(args, ckpts, log)
         model = Model(models)
     else:
         model = get_model(args).cuda()
-        last_epoch, step  = checkpoint.load_checkpoint(args, model, checkpoint=args.initial_ckpt)
-        log.write(f'Loaded checkpoint from {args.initial_ckpt} @ {last_epoch}\n')
+        _  = checkpoint.load_checkpoint(args, model, checkpoint=args.initial_ckpt)
+        log.write(f'Loaded checkpoint from {args.initial_ckpt}\n')
 
     dataloader = get_dataloader(args.data_dir, df, 'test', args.positive_ratio, args.batch_size)   
     seed_everything()
@@ -111,10 +112,8 @@ def submit(args, log):
     rle_predictions = {}
     EMPTY = '-1'
     FINAL_SIZE = (1024, 1024)
-    top_score_threshold = 0.75
-    min_contour_area = 2000
-    bot_score_threshold = 0.3
-
+    top_score_threshold, min_contour_area, bot_score_threshold = args.triplets 
+    
     for i, image_id in tqdm.tqdm(enumerate(test_ids), total=len(test_ids)):    
         predicted = mask_predictions[i].T
         classification_mask = predicted > top_score_threshold
@@ -147,8 +146,10 @@ if __name__ == '__main__':
                     help='which fold to use for training')
     parser.add_argument('--ensemble', type=bool, default=False,
                     help='whether to use ensemble for submission')
-    parser.add_argument('--positive_ratio', type=tuple, default=0.8, 
+    parser.add_argument('--positive_ratio', type=float, default=0.8, 
                     help='postive ratio rate for sliding sampling')
+    parser.add_argument('--triplets',  nargs='+', type=float, default=(0.7, 2000, 0.3), 
+                    help='thresholds from triplet thresholding')
     parser.add_argument('--batch_size', type=int, default=16, 
                     help='batch size')
     parser.add_argument('--model_name', type=str, default='FPN_effb4',
@@ -172,7 +173,11 @@ if __name__ == '__main__':
     os.environ['CUDA_VISIBLE_DEVICES']= f'{args.gpu}'
 
     log = Logger()
-    log.open(args.log_dir + '/' + args.model_name + f'/fold_{args.fold}' + '/submit_log.txt', mode='a')
+    if args.ensemble:
+        os.makedirs(args.log_dir + f'/{args.model_name}/ensemble', exist_ok=True)
+        log.open(args.log_dir + '/' + args.model_name + '/ensemble' + '/submit_log.txt', mode='a')
+    else:
+        log.open(args.log_dir + '/' + args.model_name + f'/fold_{args.fold}' + '/submit_log.txt', mode='a')
     log.write('*'*30)
     log.write('\n')
     log.write('Logging arguments!!\n')

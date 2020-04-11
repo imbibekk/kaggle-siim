@@ -84,21 +84,41 @@ def evaluate_single_epoch(model, dataloader, augment):
 
 def inference(args, log):
     df = pd.read_csv(args.df_path)
-    df_valid = df[df['fold']==args.fold]
-
-    model = get_model(args).cuda()
-    last_epoch, step = checkpoint.load_checkpoint(args, model, checkpoint=args.initial_ckpt)
-    log.write(f'Loaded checkpoint from {args.initial_ckpt} @ {last_epoch}\n')
-
-    dataloaders = {mode:get_dataloader(args.data_dir, df_valid, mode, args.positive_ratio, args.batch_size) for mode in ['val']}   
-
-    seed_everything()
     
-    # inference
-    image_ids, mask_probs, mask_truth = evaluate_single_epoch(model, dataloaders['val'], args.tta_augment)
+    if args.ensemble:
+        folds = args.fold.split(',')
+        ckpts = args.initial_ckpt.split(',')
+    else:
+        folds = [args.fold]
+        ckpts = [args.initial_ckpt]
+
+    image_ids, mask_probs, mask_truth = [], [], []
+    for fold, ckpt in zip(folds, ckpts):
+        df_valid = df[df['fold']==int(fold)]
+        
+        model = get_model(args).cuda()
+        _ = checkpoint.load_checkpoint(args, model, checkpoint=ckpt)
+        log.write(f'Loaded checkpoint for fold {fold} from {ckpt}\n')
+
+        dataloaders = {mode:get_dataloader(args.data_dir, df_valid, mode, args.positive_ratio, args.batch_size) for mode in ['val']}   
+        seed_everything()
+
+        # inference
+        fold_image_ids, fold_mask_probs, fold_mask_truth = evaluate_single_epoch(model, dataloaders['val'], args.tta_augment)
+        image_ids.append(fold_image_ids)
+        mask_probs.append(fold_mask_probs)
+        mask_truth.append(fold_mask_truth)
+    
+    image_ids = np.concatenate(image_ids)
+    mask_probs = np.concatenate(mask_probs)
+    mask_truth = np.concatenate(mask_truth)
     
     if args.save2numpy:
-        out_dir = args.log_dir + f'/{args.model_name}/fold_{args.fold}/submit'
+        if args.ensemble:
+            out_dir = args.log_dir + f'/{args.model_name}/ensemble/submit'
+        else:
+            out_dir = args.log_dir + f'/{args.model_name}/fold_{args.fold}/submit'
+        
         os.makedirs(out_dir, exist_ok=True)
         log.write(f'saving results @ {out_dir}\n')
 
@@ -110,28 +130,31 @@ def inference(args, log):
             image_id = read_list_from_file(out_dir + '/image_id.txt')
             mask_probs = read_pickle_from_file(out_dir + '/mask_probs.pickle')
             mask_truth = read_pickle_from_file(out_dir + '/mask_truth.pickle')
+        
+    mask_probs = torch.from_numpy(mask_probs)
+    mask_truth = torch.from_numpy(mask_truth)
+    log.write(f'mask_truth: {mask_truth.shape} | mask_probs: {mask_probs.shape}\n')
+        
+    triplets = [[0.75, 1000, 0.3], [0.75, 1000, 0.4], [0.75, 2000, 0.3], [0.75, 2000, 0.4], [0.6, 2000, 0.3], [0.6, 2000, 0.4], [0.6, 3000, 0.3], [0.6, 3000, 0.4]]
+    binarizer_fn = TripletMaskBinarization(triplets)
+    mask_generator = binarizer_fn.transform(mask_probs)
+        
+    thresholds = binarizer_fn.thresholds
+    metrics = defaultdict(float)
+        
+    for current_thr, pred_mask in zip(thresholds, mask_generator):
+        current_metric = dice_metric(pred_mask, mask_truth, per_image=True).item()
+        current_thr = tuple(current_thr)
+        metrics[current_thr] =  current_metric
 
-        
-        mask_probs = torch.from_numpy(mask_probs)
-        mask_truth = torch.from_numpy(mask_truth)
-        print(f'mask_truth: {mask_truth.shape} | mask_probs: {mask_probs.shape}')
-        
-        triplets = [[0.75, 1000, 0.3], [0.75, 1000, 0.4], [0.75, 2000, 0.3], [0.75, 2000, 0.4], [0.6, 2000, 0.3], [0.6, 2000, 0.4], [0.6, 3000, 0.3], [0.6, 3000, 0.4]]
-        binarizer_fn = TripletMaskBinarization(triplets)
-        mask_generator = binarizer_fn.transform(mask_probs)
-        
-        thresholds = binarizer_fn.thresholds
-        metrics = defaultdict(float)
-        
-        for current_thr, pred_mask in zip(thresholds, mask_generator):
-                current_metric = dice_metric(pred_mask, mask_truth, per_image=True).item()
-                current_thr = tuple(current_thr)
-                metrics[current_thr] =  current_metric
+    log.write('\n')
+    for th, value in sorted(metrics.items()):
+        log.write(f'{th}: {value}\n')
+    log.write('\n')
 
-        best_threshold = max(metrics, key=metrics.get)
-        best_metric = metrics[best_threshold]
-                
-        log.write(f'Validation dice : {best_metric} @ {best_threshold}\n')
+    best_threshold = max(metrics, key=metrics.get)
+    best_metric = metrics[best_threshold]            
+    log.write(f'Validation dice : {best_metric} @ {best_threshold}\n')
 
 
 if __name__ == '__main__':
@@ -142,9 +165,11 @@ if __name__ == '__main__':
                     help='datasest directory')
     parser.add_argument('--df_path', default='./data/train_folds_5.csv',
                     help='df_path')
-    parser.add_argument('--save2numpy',type=bool, default=True,
+    parser.add_argument('--save2numpy',type=bool, default=False,
                     help='whether to save validation results or not')
-    parser.add_argument('--fold', type=int, default=0,
+    parser.add_argument('--ensemble', type=bool, default=False,
+                    help='whether to use ensemble for submission')
+    parser.add_argument('--fold', type=str, default=0,
                     help='which fold to use for training')
     parser.add_argument('--positive_ratio', type=tuple, default=0.8, 
                     help='postive ratio rate for sliding sampling')
@@ -171,7 +196,11 @@ if __name__ == '__main__':
     os.environ['CUDA_VISIBLE_DEVICES']= f'{args.gpu}'
 
     log = Logger()
-    log.open(args.log_dir + '/' + args.model_name + f'/fold_{args.fold}' + '/validate_log.txt', mode='a')
+    if args.ensemble:
+        os.makedirs(args.log_dir + f'/{args.model_name}/ensemble', exist_ok=True)
+        log.open(args.log_dir + '/' + args.model_name + '/ensemble' + '/ensemble.txt', mode='a')
+    else:
+        log.open(args.log_dir + '/' + args.model_name + f'/fold_{args.fold}' + '/validate_log.txt', mode='a')
     log.write('*'*30)
     log.write('\n')
     log.write('Logging arguments!!\n')
