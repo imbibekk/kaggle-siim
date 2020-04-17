@@ -7,6 +7,7 @@ import math
 import argparse
 import pprint
 import tqdm
+import copy
 
 import pandas as pd
 import numpy as np
@@ -24,7 +25,7 @@ from utils.mask_binarizers import TripletMaskBinarization
 import utils
 from utils import checkpoint
 from utils.metrics import dice_metric
-from utils.utils import Logger, seed_everything, update_avg
+from utils.utils import Logger, seed_everything, update_avg, accumulate
 
 
 def evaluate_single_epoch(args, model, dataloader, criterion, binarizer_fn):
@@ -66,7 +67,7 @@ def evaluate_single_epoch(args, model, dataloader, criterion, binarizer_fn):
     return curr_loss_avg.item(), best_metric, best_threshold
 
 
-def train_single_epoch(args, model, dataloader, criterion, optimizer, epoch, use_amp=False):
+def train_single_epoch(args, model, ema_model, dataloader, criterion, optimizer, epoch, use_amp=False):
     
     model.train()
     curr_loss_avg = 0
@@ -90,6 +91,12 @@ def train_single_epoch(args, model, dataloader, criterion, optimizer, epoch, use
         optimizer.step()
         optimizer.zero_grad()
         
+        if args.ema:
+            if epoch >= args.ema_start:
+                accumulate(ema_model, model, decay=args.ema_decay)
+            else:
+                accumulate(ema_model, model, decay=0)
+
         curr_loss_avg = update_avg(curr_loss_avg, loss, batch_idx)        
         tbar.set_description('loss: %.5f, lr: %.6f' % (curr_loss_avg.item(), optimizer.param_groups[0]['lr']))
     return curr_loss_avg.item()
@@ -102,6 +109,12 @@ def train(args, log, model, dataloaders, criterion, optimizer, scheduler, binari
         model = torch.nn.DataParallel(model)
     model = model.cuda()
 
+    if args.ema:
+        ema_model = copy.deepcopy(model)
+        ema_model.cuda()
+    else:
+        ema_model = None
+
     log.write('Start Training...!!\n')
 
     patience = 0.0
@@ -110,10 +123,13 @@ def train(args, log, model, dataloaders, criterion, optimizer, scheduler, binari
     for epoch in range(start_epoch, num_epochs):
 
         # train phase
-        train_loss = train_single_epoch(args, model, dataloaders['train'], criterion, optimizer, epoch)
+        train_loss = train_single_epoch(args, model, ema_model, dataloaders['train'], criterion, optimizer, epoch)
         
         # valid phase
-        val_loss, val_dice, best_threshold = evaluate_single_epoch(args, model, dataloaders['val'], criterion, binarizer_fn)
+        if args.ema:
+            val_loss, val_dice, best_threshold = evaluate_single_epoch(args, ema_model, dataloaders['val'], criterion, binarizer_fn)
+        else:
+            val_loss, val_dice, best_threshold = evaluate_single_epoch(args, model, dataloaders['val'], criterion, binarizer_fn)
         
         log_write = f'Epoch: {epoch} | Train_loss: {train_loss:.5f} | Val loss: {val_loss:.5f} | val dice: {val_dice:.5f} @ {best_threshold}'
         log.write(log_write)
@@ -125,8 +141,11 @@ def train(args, log, model, dataloaders, criterion, optimizer, scheduler, binari
             scheduler.step()
         
         # save metric checkpoint
-        name = f'best_metric' 
-        checkpoint.save_checkpoint(args, model, optimizer, epoch=epoch, metric_score=val_dice, step=0, keep=args.ckpt_keep, name=name)  
+        name = 'metric' 
+        if args.ema:
+            checkpoint.save_checkpoint(args, ema_model, optimizer, epoch=epoch, metric_score=val_dice, step=0, keep=args.ckpt_keep, name=name)  
+        else:
+            checkpoint.save_checkpoint(args, model, optimizer, epoch=epoch, metric_score=val_dice, step=0, keep=args.ckpt_keep, name=name)
 
         if val_loss < best_val_loss:
             best_val_loss = val_loss
@@ -169,7 +188,7 @@ def run(args, log):
 
     dataloaders = {mode:get_dataloader(args.data_dir, dfs[mode], mode, args.positive_ratio, args.batch_size) for mode in ['train', 'val']}   
 
-    scheduler = get_scheduler(args, optimizer, last_epoch, dataloaders['train'])
+    scheduler = get_scheduler(args, optimizer, -1, dataloaders['train'])
 
     seed_everything()
 
@@ -198,6 +217,10 @@ def parse_args():
                     help='name of optimizer to use')
     parser.add_argument('--grad_clip', type=float, default=0.1,
                     help='clipping value for gradient')
+    parser.add_argument('--ema',type=bool, default=False,
+                    help='whether to use ema or not')
+    parser.add_argument('--ema_decay', type=float, default=0.9999)
+    parser.add_argument('--ema_start', type=int, default=5)
     parser.add_argument('--optimizer_name', type=str, default='adam',
                     help='name of optimizer to use')
     parser.add_argument('--scheduler_name', type=str, default='cosine',

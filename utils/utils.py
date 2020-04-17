@@ -21,7 +21,14 @@ def prepare_train_directories(args):
 def update_avg(curr_avg, val, idx):
     return (curr_avg * idx + val) / (idx + 1)
 
+def accumulate(model1, model2, decay=0.99):
+    par1 = model1.state_dict()
+    par2 = model2.state_dict()
 
+    with torch.no_grad():
+        for k in par1.keys():
+            par1[k].data.copy_(par1[k].data * decay + par2[k].data * (1 - decay))
+            
 def seed_everything(seed=1234):
     random.seed(seed)
     os.environ['PYTHONHASHSEED'] = str(seed)
