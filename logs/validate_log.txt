@@ -1,0 +1,408 @@
+******************************
+Logging arguments!!
+******************************
+batch_size: 16
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_splits.csv
+encoder_name: resnet34
+fold: 0
+gpu: 0
+initial_ckpt: runs/u_res34/fold_0/checkpoint/0.8499755650313933_best_metric.pth
+log_dir: runs
+model_name: u_res34
+num_class: 1
+num_epochs: 30
+positive_ratio_range: 0.8
+save2numpy: True
+tta_augment: ['null']
+******************************
+Loaded checkpoint from runs/u_res34/fold_0/checkpoint/0.8499755650313933_best_metric.pth @ 41
+******************************
+Logging arguments!!
+******************************
+batch_size: 16
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_splits.csv
+encoder_name: resnet34
+fold: 0
+gpu: 0
+initial_ckpt: runs/u_res34/fold_0/checkpoint/0.8499755650313933_best_metric.pth
+log_dir: runs
+model_name: u_res34
+num_class: 1
+num_epochs: 30
+positive_ratio_range: 0.8
+save2numpy: True
+tta_augment: ['null']
+******************************
+Loaded checkpoint from runs/u_res34/fold_0/checkpoint/0.8499755650313933_best_metric.pth @ 41
+******************************
+Logging arguments!!
+******************************
+batch_size: 16
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_splits.csv
+encoder_name: resnet34
+fold: 0
+gpu: 0
+initial_ckpt: runs/u_res34/fold_0/checkpoint/0.8499755650313933_best_metric.pth
+log_dir: runs
+model_name: u_res34
+num_class: 1
+num_epochs: 30
+positive_ratio: 0.8
+save2numpy: True
+tta_augment: ['null']
+******************************
+Loaded checkpoint from runs/u_res34/fold_0/checkpoint/0.8499755650313933_best_metric.pth @ 41
+******************************
+Logging arguments!!
+******************************
+batch_size: 16
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_folds_5.csv
+encoder_name: resnet34
+fold: 0
+gpu: 0
+initial_ckpt: runs/u_res34/fold_0/checkpoint/0.8499755650313933_best_metric.pth
+log_dir: runs
+model_name: u_res34
+num_class: 1
+num_epochs: 30
+positive_ratio: 0.8
+save2numpy: True
+tta_augment: ['null']
+******************************
+Loaded checkpoint from runs/u_res34/fold_0/checkpoint/0.8499755650313933_best_metric.pth @ 41
+******************************
+Logging arguments!!
+******************************
+batch_size: 4
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_folds_5.csv
+encoder_name: resnet34
+fold: 0
+gpu: 0
+initial_ckpt: runs/u_res34/fold_0/checkpoint/0.8499755650313933_best_metric.pth
+log_dir: runs
+model_name: u_res34
+num_class: 1
+num_epochs: 30
+positive_ratio: 0.8
+save2numpy: True
+tta_augment: ['null']
+******************************
+Loaded checkpoint from runs/u_res34/fold_0/checkpoint/0.8499755650313933_best_metric.pth @ 41
+******************************
+Logging arguments!!
+******************************
+batch_size: 4
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_folds_5.csv
+encoder_name: resnet34
+fold: 0
+gpu: 0
+initial_ckpt: runs/u_res34/fold_0/checkpoint/0.8499755650313933_best_metric.pth
+log_dir: runs
+model_name: u_res34
+num_class: 1
+num_epochs: 30
+positive_ratio: 0.8
+save2numpy: True
+tta_augment: ['null']
+******************************
+Loaded checkpoint from runs/u_res34/fold_0/checkpoint/0.8499755650313933_best_metric.pth @ 41
+saving results @ runs/u_res34/fold_0/submit
+******************************
+Logging arguments!!
+******************************
+batch_size: 4
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_folds_5.csv
+encoder_name: resnet34
+fold: 0
+gpu: 0
+initial_ckpt: runs/u_res34/fold_0/checkpoint/0.8499755650313933_best_metric.pth
+log_dir: runs
+model_name: u_res34
+num_class: 1
+num_epochs: 30
+positive_ratio: 0.8
+save2numpy: True
+tta_augment: ['null']
+******************************
+Loaded checkpoint from runs/u_res34/fold_0/checkpoint/0.8499755650313933_best_metric.pth @ 41
+saving results @ runs/u_res34/fold_0/submit
+Validation dice : 0.8494841456413269 @ (0.6, 3000, 0.4)
+******************************
+Logging arguments!!
+******************************
+batch_size: 4
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_folds_5.csv
+encoder_name: resnet34
+fold: 0
+gpu: 0
+initial_ckpt: runs/u_res34/fold_0/checkpoint/0.8499755650313933_best_metric.pth
+log_dir: runs
+model_name: u_res34
+num_class: 1
+num_epochs: 30
+positive_ratio: 0.8
+save2numpy: True
+tta_augment: ['null']
+******************************
+Loaded checkpoint from runs/u_res34/fold_0/checkpoint/0.8499755650313933_best_metric.pth @ 41
+saving results @ runs/u_res34/fold_0/submit
+Validation dice : 0.8494841456413269 @ (0.6, 3000, 0.4)
+******************************
+Logging arguments!!
+******************************
+batch_size: 16
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_folds_5.csv
+encoder_name: resnet34
+fold: 0
+gpu: 0
+initial_ckpt: runs/u_res34/fold_0/checkpoint/0.8535586595535278_best_metric.pth
+log_dir: runs
+model_name: u_res34
+num_class: 1
+num_epochs: 30
+positive_ratio: 0.8
+save2numpy: True
+tta_augment: ['null']
+******************************
+Loaded checkpoint from runs/u_res34/fold_0/checkpoint/0.8535586595535278_best_metric.pth @ 47
+******************************
+Logging arguments!!
+******************************
+batch_size: 4
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_folds_5.csv
+encoder_name: resnet34
+fold: 0
+gpu: 0
+initial_ckpt: runs/u_res34/fold_0/checkpoint/0.8535586595535278_best_metric.pth
+log_dir: runs
+model_name: u_res34
+num_class: 1
+num_epochs: 30
+positive_ratio: 0.8
+save2numpy: True
+tta_augment: ['null']
+******************************
+Loaded checkpoint from runs/u_res34/fold_0/checkpoint/0.8535586595535278_best_metric.pth @ 47
+saving results @ runs/u_res34/fold_0/submit
+Validation dice : 0.8535586595535278 @ (0.75, 2000, 0.3)
+******************************
+Logging arguments!!
+******************************
+batch_size: 16
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_folds_5.csv
+encoder_name: resnet34
+fold: 0
+gpu: 0
+initial_ckpt: runs/u_res34/fold_1/checkpoint/0.853769063949585_best_metric.pth
+log_dir: runs
+model_name: u_res34
+num_class: 1
+num_epochs: 30
+positive_ratio: 0.8
+save2numpy: True
+tta_augment: ['null']
+******************************
+Loaded checkpoint from runs/u_res34/fold_1/checkpoint/0.853769063949585_best_metric.pth @ 28
+******************************
+Logging arguments!!
+******************************
+batch_size: 16
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_folds_5.csv
+encoder_name: resnet34
+fold: 0
+gpu: 0
+initial_ckpt: runs/u_res34/fold_1/checkpoint/0.853769063949585_best_metric.pth
+log_dir: runs
+model_name: u_res34
+num_class: 1
+num_epochs: 30
+positive_ratio: 0.8
+save2numpy: True
+tta_augment: ['null']
+******************************
+Loaded checkpoint from runs/u_res34/fold_1/checkpoint/0.853769063949585_best_metric.pth @ 28
+******************************
+Logging arguments!!
+******************************
+batch_size: 16
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_folds_5.csv
+encoder_name: resnet34
+fold: 0
+gpu: 0
+initial_ckpt: runs/u_res34/fold_0/checkpoint/0_model_swa_5.pth
+log_dir: runs
+model_name: u_res34
+num_class: 1
+num_epochs: 30
+positive_ratio: 0.8
+save2numpy: True
+tta_augment: ['null']
+******************************
+Loaded checkpoint from runs/u_res34/fold_0/checkpoint/0_model_swa_5.pth @ -1
+******************************
+Logging arguments!!
+******************************
+batch_size: 8
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_folds_5.csv
+encoder_name: resnet34
+fold: 0
+gpu: 0
+initial_ckpt: runs/u_res34/fold_0/checkpoint/0_model_swa_5.pth
+log_dir: runs
+model_name: u_res34
+num_class: 1
+num_epochs: 30
+positive_ratio: 0.8
+save2numpy: True
+tta_augment: ['null']
+******************************
+Loaded checkpoint from runs/u_res34/fold_0/checkpoint/0_model_swa_5.pth @ -1
+saving results @ runs/u_res34/fold_0/submit
+Validation dice : 0.8559829592704773 @ (0.75, 2000, 0.3)
+******************************
+Logging arguments!!
+******************************
+batch_size: 8
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_folds_5.csv
+encoder_name: resnet34
+ensemble: False
+fold: 0
+gpu: 0
+initial_ckpt: runs/u_res34/fold_0/checkpoint/0.854561984539032_best_metric.pth
+log_dir: runs
+model_name: u_res34
+num_class: 1
+num_epochs: 30
+positive_ratio: 0.8
+save2numpy: False
+tta_augment: ['null']
+******************************
+******************************
+Logging arguments!!
+******************************
+batch_size: 8
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_folds_5.csv
+encoder_name: resnet34
+ensemble: False
+fold: 0
+gpu: 0
+initial_ckpt: runs/u_res34/fold_0/checkpoint/0.854561984539032_best_metric.pth
+log_dir: runs
+model_name: u_res34
+num_class: 1
+num_epochs: 30
+positive_ratio: 0.8
+save2numpy: False
+tta_augment: ['null']
+******************************
+Loaded checkpoint for fold 0 from runs/u_res34/fold_0/checkpoint/0.854561984539032_best_metric.pth
+Validation dice : 0.854561984539032 @ (0.6, 2000, 0.3)
+******************************
+Logging arguments!!
+******************************
+batch_size: 16
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_folds_5.csv
+encoder_name: resnet34
+ensemble: False
+fold: 0
+gpu: 1
+initial_ckpt: runs/u_res34/fold_0/checkpoint/0.854561984539032_best_metric.pth
+log_dir: runs
+model_name: u_res34
+num_class: 1
+num_epochs: 30
+positive_ratio: 0.8
+save2numpy: False
+tta_augment: ['null']
+******************************
+Loaded checkpoint for fold 0 from runs/u_res34/fold_0/checkpoint/0.854561984539032_best_metric.pth
+******************************
+Logging arguments!!
+******************************
+batch_size: 8
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_folds_5.csv
+encoder_name: resnet34
+ensemble: False
+fold: 0
+gpu: 1
+initial_ckpt: runs/u_res34/fold_0/checkpoint/0.854561984539032_best_metric.pth
+log_dir: runs
+model_name: u_res34
+num_class: 1
+num_epochs: 30
+positive_ratio: 0.8
+save2numpy: False
+tta_augment: ['null']
+******************************
+Loaded checkpoint for fold 0 from runs/u_res34/fold_0/checkpoint/0.854561984539032_best_metric.pth
+mask_truth: torch.Size([2137, 1, 1024, 1024]) | mask_probs: torch.Size([2137, 1, 1024, 1024])
+Validation dice : 0.854561984539032 @ (0.6, 2000, 0.3)
+******************************
+Logging arguments!!
+******************************
+batch_size: 8
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_folds_5.csv
+encoder_name: resnet34
+ensemble: False
+fold: 0
+gpu: 2
+initial_ckpt: runs/u_res34/fold_0/checkpoint/model_swa_no_bn_5.pth
+log_dir: runs
+model_name: u_res34
+num_class: 1
+num_epochs: 30
+positive_ratio: 0.8
+save2numpy: False
+tta_augment: ['null']
+******************************
+Loaded checkpoint for fold 0 from runs/u_res34/fold_0/checkpoint/model_swa_no_bn_5.pth
+mask_truth: torch.Size([2137, 1, 1024, 1024]) | mask_probs: torch.Size([2137, 1, 1024, 1024])
+
+(0.6, 2000, 0.3): 0.7805334329605103
+(0.6, 2000, 0.4): 0.7805334329605103
+(0.6, 3000, 0.3): 0.7805334329605103
+(0.6, 3000, 0.4): 0.7805334329605103
+(0.75, 1000, 0.3): 0.7805334329605103
+(0.75, 1000, 0.4): 0.7805334329605103
+(0.75, 2000, 0.3): 0.7805334329605103
+(0.75, 2000, 0.4): 0.7805334329605103
+
+Validation dice : 0.7805334329605103 @ (0.75, 1000, 0.3)

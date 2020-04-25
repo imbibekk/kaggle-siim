@@ -1,0 +1,415 @@
+******************************
+Logging arguments!!
+******************************
+batch_size: 4
+ckpt_keep: 5
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_splits.csv
+encoder_name: resnet34
+fold: 0
+gpu: 1
+grad_clip: 0.1
+initial_ckpt: None
+log_dir: runs
+loss_weights: {'bce': 1, 'dice': 1, 'focal': 1}
+max_lr: 0.0001
+min_lr: 0.0001
+model_name: u_res34
+num_class: 1
+num_epochs: 50
+optimizer_name: adam
+period: 14
+positive_ratio: 0.8
+scheduler_name: reduce_lr_on_plateau
+warm_start: 5
+warm_up: False
+weight_decay: 5e-06
+******************************
+Start Training...!!
+Epoch: 0 | Train_loss: 1.04359 | Val loss: 0.95619 | val dice: 0.68188 @ (0.75, 2000, 0.3)
+Epoch: 1 | Train_loss: 0.73595 | Val loss: 0.90013 | val dice: 0.60845 @ (0.75, 2000, 0.3)
+Epoch: 2 | Train_loss: 0.65678 | Val loss: 0.87320 | val dice: 0.63145 @ (0.6, 3000, 0.4)
+Epoch: 3 | Train_loss: 0.61988 | Val loss: 0.87272 | val dice: 0.66932 @ (0.6, 3000, 0.3)
+Epoch: 4 | Train_loss: 0.54222 | Val loss: 0.86701 | val dice: 0.62329 @ (0.6, 3000, 0.4)
+******************************
+Logging arguments!!
+******************************
+batch_size: 4
+ckpt_keep: 5
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_folds_5.csv
+encoder_name: resnet34
+fold: 0
+gpu: 1
+grad_clip: 0.1
+initial_ckpt: None
+log_dir: runs
+loss_weights: {'bce': 1, 'dice': 1, 'focal': 1}
+max_lr: 0.0001
+min_lr: 0.0001
+model_name: u_res34
+num_class: 1
+num_epochs: 50
+optimizer_name: adam
+period: 14
+positive_ratio: 0.8
+scheduler_name: reduce_lr_on_plateau
+warm_start: 5
+warm_up: False
+weight_decay: 5e-06
+******************************
+Start Training...!!
+Epoch: 0 | Train_loss: 0.99724 | Val loss: 0.90175 | val dice: 0.72313 @ (0.75, 2000, 0.4)
+Epoch: 1 | Train_loss: 0.76815 | Val loss: 0.77097 | val dice: 0.78636 @ (0.6, 3000, 0.4)
+Epoch: 2 | Train_loss: 0.69878 | Val loss: 0.78663 | val dice: 0.60712 @ (0.6, 3000, 0.3)
+Epoch: 3 | Train_loss: 0.66672 | Val loss: 0.71285 | val dice: 0.79476 @ (0.6, 3000, 0.3)
+Epoch: 4 | Train_loss: 0.63372 | Val loss: 0.70203 | val dice: 0.80674 @ (0.6, 3000, 0.4)
+Epoch: 5 | Train_loss: 0.61674 | Val loss: 0.70407 | val dice: 0.73784 @ (0.6, 3000, 0.4)
+Epoch: 6 | Train_loss: 0.59869 | Val loss: 0.69649 | val dice: 0.73089 @ (0.6, 3000, 0.4)
+Epoch: 7 | Train_loss: 0.59517 | Val loss: 0.69193 | val dice: 0.81873 @ (0.6, 3000, 0.3)
+Epoch: 8 | Train_loss: 0.59688 | Val loss: 0.68654 | val dice: 0.73097 @ (0.6, 3000, 0.4)
+Epoch: 9 | Train_loss: 0.58022 | Val loss: 0.67589 | val dice: 0.83544 @ (0.6, 2000, 0.3)
+Epoch: 10 | Train_loss: 0.55855 | Val loss: 0.67358 | val dice: 0.75829 @ (0.6, 3000, 0.4)
+Epoch: 11 | Train_loss: 0.59464 | Val loss: 0.67105 | val dice: 0.80992 @ (0.6, 3000, 0.3)
+Epoch: 12 | Train_loss: 0.55423 | Val loss: 0.64761 | val dice: 0.78821 @ (0.6, 3000, 0.4)
+Epoch: 13 | Train_loss: 0.51395 | Val loss: 0.62483 | val dice: 0.80147 @ (0.6, 3000, 0.4)
+Epoch: 14 | Train_loss: 0.49957 | Val loss: 0.60580 | val dice: 0.82342 @ (0.6, 3000, 0.4)
+Epoch: 15 | Train_loss: 0.48581 | Val loss: 0.60567 | val dice: 0.82059 @ (0.6, 3000, 0.4)
+Epoch: 16 | Train_loss: 0.48163 | Val loss: 0.60336 | val dice: 0.82178 @ (0.6, 3000, 0.4)
+Epoch: 17 | Train_loss: 0.48853 | Val loss: 0.60040 | val dice: 0.83313 @ (0.6, 3000, 0.4)
+Epoch: 18 | Train_loss: 0.47366 | Val loss: 0.59855 | val dice: 0.83153 @ (0.6, 3000, 0.4)
+Epoch: 19 | Train_loss: 0.47368 | Val loss: 0.59844 | val dice: 0.83018 @ (0.6, 3000, 0.4)
+Epoch: 20 | Train_loss: 0.47757 | Val loss: 0.60056 | val dice: 0.82304 @ (0.6, 3000, 0.4)
+******************************
+Logging arguments!!
+******************************
+batch_size: 4
+ckpt_keep: 5
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_folds_5.csv
+encoder_name: resnet34
+fold: 0
+gpu: 1
+grad_clip: 0.1
+initial_ckpt: runs/u_res34/fold_0/checkpoint/0.8354446547689722_best_metric.pth
+log_dir: runs
+loss_weights: {'bce': 1, 'dice': 1, 'focal': 1}
+min_lr: 1e-05
+model_name: u_res34
+num_class: 1
+num_epochs: 50
+optimizer_name: adam
+positive_ratio: 0.6
+scheduler_name: cosine
+weight_decay: 5e-06
+******************************
+Resume training from runs/u_res34/fold_0/checkpoint/0.8354446547689722_best_metric.pth @ 9
+Start Training...!!
+Epoch: 10 | Train_loss: 0.54841 | Val loss: 0.61138 | val dice: 0.82021 @ (0.6, 3000, 0.4)
+Best Loss: 0.6113760471343994 | Best Dice: 0.8202055214501139
+Epoch: 11 | Train_loss: 0.51996 | Val loss: 0.60768 | val dice: 0.81614 @ (0.6, 3000, 0.4)
+Best Loss: 0.6076846718788147 | Best Dice: 0.8202055214501139
+Epoch: 12 | Train_loss: 0.52281 | Val loss: 0.59961 | val dice: 0.82699 @ (0.6, 3000, 0.4)
+Best Loss: 0.5996108651161194 | Best Dice: 0.8269866026604352
+Epoch: 13 | Train_loss: 0.53318 | Val loss: 0.60089 | val dice: 0.83002 @ (0.6, 3000, 0.4)
+Best Loss: 0.5996108651161194 | Best Dice: 0.8300184147126641
+Epoch: 14 | Train_loss: 0.52043 | Val loss: 0.60726 | val dice: 0.83463 @ (0.6, 3000, 0.4)
+Best Loss: 0.5996108651161194 | Best Dice: 0.8346250642146636
+Epoch: 15 | Train_loss: 0.51219 | Val loss: 0.59638 | val dice: 0.83408 @ (0.6, 3000, 0.4)
+Best Loss: 0.5963842868804932 | Best Dice: 0.8346250642146636
+Epoch: 16 | Train_loss: 0.51810 | Val loss: 0.59338 | val dice: 0.83705 @ (0.6, 3000, 0.4)
+Best Loss: 0.5933753848075867 | Best Dice: 0.8370451884928034
+Epoch: 17 | Train_loss: 0.49680 | Val loss: 0.59905 | val dice: 0.82524 @ (0.6, 3000, 0.4)
+Best Loss: 0.5933753848075867 | Best Dice: 0.8370451884928034
+Epoch: 18 | Train_loss: 0.51511 | Val loss: 0.60709 | val dice: 0.81366 @ (0.6, 3000, 0.4)
+Best Loss: 0.5933753848075867 | Best Dice: 0.8370451884928034
+Epoch: 19 | Train_loss: 0.50431 | Val loss: 0.59285 | val dice: 0.82893 @ (0.6, 3000, 0.4)
+Best Loss: 0.5928473472595215 | Best Dice: 0.8370451884928034
+Epoch: 20 | Train_loss: 0.49330 | Val loss: 0.59212 | val dice: 0.83790 @ (0.6, 3000, 0.4)
+Best Loss: 0.5921167135238647 | Best Dice: 0.8378970707530407
+Epoch: 21 | Train_loss: 0.48985 | Val loss: 0.59291 | val dice: 0.83621 @ (0.6, 3000, 0.4)
+Best Loss: 0.5921167135238647 | Best Dice: 0.8378970707530407
+Epoch: 22 | Train_loss: 0.49797 | Val loss: 0.59175 | val dice: 0.84129 @ (0.6, 3000, 0.4)
+Best Loss: 0.5917498469352722 | Best Dice: 0.8412879694308808
+Epoch: 23 | Train_loss: 0.49017 | Val loss: 0.58682 | val dice: 0.84196 @ (0.6, 3000, 0.4)
+Best Loss: 0.5868192315101624 | Best Dice: 0.8419609007550709
+Epoch: 24 | Train_loss: 0.48745 | Val loss: 0.58485 | val dice: 0.84460 @ (0.6, 3000, 0.4)
+Best Loss: 0.5848526358604431 | Best Dice: 0.8446009928610786
+Epoch: 25 | Train_loss: 0.50191 | Val loss: 0.59636 | val dice: 0.82290 @ (0.6, 3000, 0.4)
+Best Loss: 0.5848526358604431 | Best Dice: 0.8446009928610786
+Epoch: 26 | Train_loss: 0.48859 | Val loss: 0.58568 | val dice: 0.83493 @ (0.6, 3000, 0.4)
+Best Loss: 0.5848526358604431 | Best Dice: 0.8446009928610786
+Epoch: 27 | Train_loss: 0.48714 | Val loss: 0.58718 | val dice: 0.84439 @ (0.6, 3000, 0.4)
+Best Loss: 0.5848526358604431 | Best Dice: 0.8446009928610786
+Epoch: 28 | Train_loss: 0.48390 | Val loss: 0.58327 | val dice: 0.84678 @ (0.6, 3000, 0.4)
+Best Loss: 0.5832704901695251 | Best Dice: 0.8467842071358838
+Epoch: 29 | Train_loss: 0.49255 | Val loss: 0.58830 | val dice: 0.83670 @ (0.6, 3000, 0.4)
+Best Loss: 0.5832704901695251 | Best Dice: 0.8467842071358838
+Epoch: 30 | Train_loss: 0.47678 | Val loss: 0.58404 | val dice: 0.83446 @ (0.6, 3000, 0.4)
+Best Loss: 0.5832704901695251 | Best Dice: 0.8467842071358838
+Epoch: 31 | Train_loss: 0.47834 | Val loss: 0.58335 | val dice: 0.84303 @ (0.6, 3000, 0.4)
+Best Loss: 0.5832704901695251 | Best Dice: 0.8467842071358838
+Epoch: 32 | Train_loss: 0.49044 | Val loss: 0.58178 | val dice: 0.84792 @ (0.75, 2000, 0.4)
+Best Loss: 0.5817826390266418 | Best Dice: 0.8479188122411271
+Epoch: 33 | Train_loss: 0.47308 | Val loss: 0.58647 | val dice: 0.83881 @ (0.6, 3000, 0.4)
+Best Loss: 0.5817826390266418 | Best Dice: 0.8479188122411271
+Epoch: 34 | Train_loss: 0.46372 | Val loss: 0.58082 | val dice: 0.84439 @ (0.6, 3000, 0.4)
+Best Loss: 0.5808196663856506 | Best Dice: 0.8479188122411271
+Epoch: 35 | Train_loss: 0.46496 | Val loss: 0.58132 | val dice: 0.84393 @ (0.6, 3000, 0.4)
+Best Loss: 0.5808196663856506 | Best Dice: 0.8479188122411271
+Epoch: 36 | Train_loss: 0.46937 | Val loss: 0.58033 | val dice: 0.84028 @ (0.6, 3000, 0.4)
+Best Loss: 0.580333411693573 | Best Dice: 0.8479188122411271
+Epoch: 37 | Train_loss: 0.46927 | Val loss: 0.57920 | val dice: 0.84581 @ (0.6, 3000, 0.4)
+Best Loss: 0.5792049765586853 | Best Dice: 0.8479188122411271
+Epoch: 38 | Train_loss: 0.46245 | Val loss: 0.58025 | val dice: 0.84620 @ (0.6, 3000, 0.4)
+Best Loss: 0.5792049765586853 | Best Dice: 0.8479188122411271
+Epoch: 39 | Train_loss: 0.45732 | Val loss: 0.57704 | val dice: 0.84280 @ (0.6, 3000, 0.4)
+Best Loss: 0.5770434737205505 | Best Dice: 0.8479188122411271
+Epoch: 40 | Train_loss: 0.45350 | Val loss: 0.58164 | val dice: 0.84092 @ (0.6, 3000, 0.4)
+Best Loss: 0.5770434737205505 | Best Dice: 0.8479188122411271
+Epoch: 41 | Train_loss: 0.46062 | Val loss: 0.57704 | val dice: 0.84998 @ (0.6, 3000, 0.4)
+Best Loss: 0.5770367383956909 | Best Dice: 0.8499755650313933
+Epoch: 42 | Train_loss: 0.46360 | Val loss: 0.58643 | val dice: 0.84927 @ (0.75, 2000, 0.3)
+Best Loss: 0.5770367383956909 | Best Dice: 0.8499755650313933
+Epoch: 43 | Train_loss: 0.46098 | Val loss: 0.57866 | val dice: 0.84723 @ (0.6, 3000, 0.4)
+Best Loss: 0.5770367383956909 | Best Dice: 0.8499755650313933
+Epoch: 44 | Train_loss: 0.45351 | Val loss: 0.58380 | val dice: 0.84726 @ (0.6, 3000, 0.4)
+Best Loss: 0.5770367383956909 | Best Dice: 0.8499755650313933
+Epoch: 45 | Train_loss: 0.46261 | Val loss: 0.58169 | val dice: 0.83793 @ (0.75, 2000, 0.4)
+Best Loss: 0.5770367383956909 | Best Dice: 0.8499755650313933
+Epoch: 46 | Train_loss: 0.45422 | Val loss: 0.58455 | val dice: 0.84951 @ (0.75, 2000, 0.3)
+Best Loss: 0.5770367383956909 | Best Dice: 0.8499755650313933
+Epoch: 47 | Train_loss: 0.44241 | Val loss: 0.58516 | val dice: 0.84799 @ (0.6, 3000, 0.4)
+Best Loss: 0.5770367383956909 | Best Dice: 0.8499755650313933
+Epoch: 48 | Train_loss: 0.45919 | Val loss: 0.58948 | val dice: 0.83888 @ (0.6, 3000, 0.4)
+Best Loss: 0.5770367383956909 | Best Dice: 0.8499755650313933
+Epoch: 49 | Train_loss: 0.44734 | Val loss: 0.57806 | val dice: 0.83909 @ (0.6, 3000, 0.4)
+Best Loss: 0.5770367383956909 | Best Dice: 0.8499755650313933
+******************************
+Logging arguments!!
+******************************
+batch_size: 4
+ckpt_keep: 5
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_folds_5.csv
+encoder_name: resnet34
+fold: 0
+gpu: 1
+grad_clip: 0.1
+initial_ckpt: runs/u_res34/fold_0/checkpoint/0.8499755650313933_best_metric.pth
+log_dir: runs
+loss_weights: {'bce': 1, 'dice': 1, 'focal': 1}
+min_lr: 1e-05
+model_name: u_res34
+num_class: 1
+num_epochs: 50
+optimizer_name: adam
+positive_ratio: 0.6
+scheduler_name: cosine
+weight_decay: 5e-06
+******************************
+Resume training from runs/u_res34/fold_0/checkpoint/0.8499755650313933_best_metric.pth @ 41
+Start Training...!!
+******************************
+Logging arguments!!
+******************************
+batch_size: 4
+ckpt_keep: 5
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_folds_5.csv
+encoder_name: resnet34
+fold: 0
+gpu: 0
+grad_clip: 0.1
+initial_ckpt: runs/u_res34/fold_0/checkpoint/0.8499755650313933_best_metric.pth
+log_dir: runs
+loss_weights: {'bce': 1, 'dice': 1, 'focal': 1}
+min_lr: 1e-05
+model_name: u_res34
+num_class: 1
+num_epochs: 50
+optimizer_name: adam
+positive_ratio: 0.6
+scheduler_name: cosine
+weight_decay: 5e-06
+******************************
+Resume training from runs/u_res34/fold_0/checkpoint/0.8499755650313933_best_metric.pth @ 41
+Start Training...!!
+******************************
+Logging arguments!!
+******************************
+batch_size: 4
+ckpt_keep: 5
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_folds_5.csv
+encoder_name: resnet34
+fold: 0
+gpu: 0
+grad_clip: 0.1
+initial_ckpt: runs/u_res34/fold_0/checkpoint/0.8499755650313933_best_metric.pth
+log_dir: runs
+loss_weights: {'bce': 1, 'dice': 1, 'focal': 1}
+min_lr: 1e-05
+model_name: u_res34
+num_class: 1
+num_epochs: 50
+optimizer_name: adam
+positive_ratio: 0.6
+scheduler_name: cosine
+weight_decay: 5e-06
+******************************
+Resume training from runs/u_res34/fold_0/checkpoint/0.8499755650313933_best_metric.pth @ 41
+Start Training...!!
+******************************
+Logging arguments!!
+******************************
+batch_size: 4
+ckpt_keep: 5
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_folds_5.csv
+encoder_name: resnet34
+fold: 0
+gpu: 0
+grad_clip: 0.1
+initial_ckpt: runs/u_res34/fold_0/checkpoint/0.8499755650313933_best_metric.pth
+log_dir: runs
+loss_weights: {'bce': 1, 'dice': 1, 'focal': 1}
+min_lr: 1e-05
+model_name: u_res34
+num_class: 1
+num_epochs: 50
+optimizer_name: adam
+positive_ratio: 0.6
+scheduler_name: cosine
+weight_decay: 5e-06
+******************************
+Resume training from runs/u_res34/fold_0/checkpoint/0.8499755650313933_best_metric.pth @ 41
+Start Training...!!
+Epoch: 42 | Train_loss: 0.00000 | Val loss: 0.57704 | val dice: 0.84948 @ (0.6, 3000, 0.4)
+Best Loss: 0.57703697681427 | Best Dice: 0.8494841456413269
+******************************
+Logging arguments!!
+******************************
+batch_size: 4
+ckpt_keep: 5
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_folds_5.csv
+encoder_name: resnet34
+fold: 0
+gpu: 0
+grad_clip: 0.1
+initial_ckpt: runs/u_res34/fold_0/checkpoint/0.8499755650313933_best_metric.pth
+log_dir: runs
+loss_weights: {'bce': 1, 'dice': 1, 'focal': 1}
+min_lr: 1e-05
+model_name: u_res34
+num_class: 1
+num_epochs: 50
+optimizer_name: adam
+positive_ratio: 0.4
+scheduler_name: cosine
+weight_decay: 5e-06
+******************************
+Resume training from runs/u_res34/fold_0/checkpoint/0.8499755650313933_best_metric.pth @ 41
+Start Training...!!
+Epoch: 42 | Train_loss: 0.52890 | Val loss: 0.57949 | val dice: 0.84162 @ (0.6, 3000, 0.4)
+Best Loss: 0.5794907808303833 | Best Dice: 0.8416203260421753
+Epoch: 43 | Train_loss: 0.53251 | Val loss: 0.57873 | val dice: 0.84148 @ (0.75, 2000, 0.4)
+Best Loss: 0.5787326693534851 | Best Dice: 0.8416203260421753
+Epoch: 44 | Train_loss: 0.53859 | Val loss: 0.58247 | val dice: 0.84622 @ (0.6, 3000, 0.4)
+Best Loss: 0.5787326693534851 | Best Dice: 0.8462226390838623
+Epoch: 45 | Train_loss: 0.52568 | Val loss: 0.57681 | val dice: 0.85043 @ (0.6, 3000, 0.4)
+Best Loss: 0.5768140554428101 | Best Dice: 0.8504344820976257
+Epoch: 46 | Train_loss: 0.52839 | Val loss: 0.57922 | val dice: 0.85185 @ (0.75, 2000, 0.3)
+Best Loss: 0.5768140554428101 | Best Dice: 0.8518503308296204
+Epoch: 47 | Train_loss: 0.53033 | Val loss: 0.58019 | val dice: 0.85356 @ (0.75, 2000, 0.3)
+Best Loss: 0.5768140554428101 | Best Dice: 0.8535586595535278
+Epoch: 48 | Train_loss: 0.53138 | Val loss: 0.57547 | val dice: 0.84975 @ (0.6, 3000, 0.4)
+Best Loss: 0.5754677057266235 | Best Dice: 0.8535586595535278
+Epoch: 49 | Train_loss: 0.51359 | Val loss: 0.57247 | val dice: 0.84843 @ (0.6, 3000, 0.4)
+Best Loss: 0.5724731683731079 | Best Dice: 0.8535586595535278
+******************************
+Logging arguments!!
+******************************
+batch_size: 4
+ckpt_keep: 5
+data_dir: ./data/train
+decoder_name: Unet
+df_path: ./data/train_folds_5.csv
+encoder_name: resnet34
+fold: 0
+gpu: 1
+grad_clip: 0.1
+initial_ckpt: runs/u_res34/fold_0/checkpoint/0.8535586595535278_best_metric.pth
+log_dir: runs
+loss_weights: {'bce': 1, 'dice': 1, 'focal': 1}
+min_lr: 1e-05
+model_name: u_res34
+num_class: 1
+num_epochs: 100
+optimizer_name: adam
+positive_ratio: 0.4
+scheduler_name: cosine
+weight_decay: 5e-06
+******************************
+Resume training from runs/u_res34/fold_0/checkpoint/0.8535586595535278_best_metric.pth @ 47
+Start Training...!!
+Epoch: 48 | Train_loss: 0.50121 | Val loss: 0.56988 | val dice: 0.84860 @ (0.6, 3000, 0.4)
+Best Loss: 0.5698768496513367 | Best Dice: 0.848603367805481
+Epoch: 49 | Train_loss: 0.50078 | Val loss: 0.57478 | val dice: 0.84737 @ (0.6, 3000, 0.4)
+Best Loss: 0.5698768496513367 | Best Dice: 0.848603367805481
+Epoch: 50 | Train_loss: 0.50591 | Val loss: 0.57458 | val dice: 0.84912 @ (0.6, 3000, 0.4)
+Best Loss: 0.5698768496513367 | Best Dice: 0.8491222858428955
+Epoch: 51 | Train_loss: 0.49481 | Val loss: 0.57524 | val dice: 0.85184 @ (0.75, 2000, 0.4)
+Best Loss: 0.5698768496513367 | Best Dice: 0.8518433570861816
+Epoch: 52 | Train_loss: 0.49730 | Val loss: 0.57701 | val dice: 0.85442 @ (0.6, 3000, 0.3)
+Best Loss: 0.5698768496513367 | Best Dice: 0.8544245362281799
+Epoch: 53 | Train_loss: 0.50020 | Val loss: 0.57372 | val dice: 0.85154 @ (0.75, 2000, 0.3)
+Best Loss: 0.5698768496513367 | Best Dice: 0.8544245362281799
+Epoch: 54 | Train_loss: 0.52209 | Val loss: 0.57712 | val dice: 0.85268 @ (0.6, 3000, 0.3)
+Best Loss: 0.5698768496513367 | Best Dice: 0.8544245362281799
+Epoch: 55 | Train_loss: 0.50703 | Val loss: 0.57556 | val dice: 0.84723 @ (0.6, 3000, 0.4)
+Best Loss: 0.5698768496513367 | Best Dice: 0.8544245362281799
+Epoch: 56 | Train_loss: 0.52327 | Val loss: 0.57971 | val dice: 0.85201 @ (0.75, 2000, 0.3)
+Best Loss: 0.5698768496513367 | Best Dice: 0.8544245362281799
+Epoch: 57 | Train_loss: 0.51055 | Val loss: 0.56920 | val dice: 0.85230 @ (0.6, 3000, 0.4)
+Best Loss: 0.5691987872123718 | Best Dice: 0.8544245362281799
+Epoch: 58 | Train_loss: 0.52162 | Val loss: 0.57884 | val dice: 0.84860 @ (0.6, 3000, 0.4)
+Best Loss: 0.5691987872123718 | Best Dice: 0.8544245362281799
+Epoch: 59 | Train_loss: 0.50275 | Val loss: 0.58062 | val dice: 0.85204 @ (0.75, 2000, 0.4)
+Best Loss: 0.5691987872123718 | Best Dice: 0.8544245362281799
+Epoch: 60 | Train_loss: 0.50865 | Val loss: 0.57418 | val dice: 0.85456 @ (0.6, 2000, 0.3)
+Best Loss: 0.5691987872123718 | Best Dice: 0.854561984539032
+Epoch: 61 | Train_loss: 0.52266 | Val loss: 0.57032 | val dice: 0.84975 @ (0.75, 2000, 0.3)
+Best Loss: 0.5691987872123718 | Best Dice: 0.854561984539032
+Epoch: 62 | Train_loss: 0.49905 | Val loss: 0.56606 | val dice: 0.84854 @ (0.6, 3000, 0.4)
+Best Loss: 0.5660582780838013 | Best Dice: 0.854561984539032
+Epoch: 63 | Train_loss: 0.50351 | Val loss: 0.57421 | val dice: 0.84614 @ (0.75, 2000, 0.4)
+Best Loss: 0.5660582780838013 | Best Dice: 0.854561984539032
+Epoch: 64 | Train_loss: 0.51040 | Val loss: 0.57655 | val dice: 0.85080 @ (0.6, 3000, 0.3)
+Best Loss: 0.5660582780838013 | Best Dice: 0.854561984539032
+Epoch: 65 | Train_loss: 0.50205 | Val loss: 0.57431 | val dice: 0.85115 @ (0.6, 3000, 0.4)
+Best Loss: 0.5660582780838013 | Best Dice: 0.854561984539032
+Epoch: 66 | Train_loss: 0.50761 | Val loss: 0.56852 | val dice: 0.85229 @ (0.6, 3000, 0.4)
+Best Loss: 0.5660582780838013 | Best Dice: 0.854561984539032
+Epoch: 67 | Train_loss: 0.50419 | Val loss: 0.57566 | val dice: 0.85215 @ (0.75, 2000, 0.3)
+Best Loss: 0.5660582780838013 | Best Dice: 0.854561984539032
+Epoch: 68 | Train_loss: 0.51171 | Val loss: 0.58121 | val dice: 0.84454 @ (0.6, 3000, 0.3)
+Best Loss: 0.5660582780838013 | Best Dice: 0.854561984539032
+Epoch: 69 | Train_loss: 0.51405 | Val loss: 0.57222 | val dice: 0.85125 @ (0.6, 3000, 0.3)
+Best Loss: 0.5660582780838013 | Best Dice: 0.854561984539032
+Epoch: 70 | Train_loss: 0.50155 | Val loss: 0.57552 | val dice: 0.84497 @ (0.6, 3000, 0.4)
+Best Loss: 0.5660582780838013 | Best Dice: 0.854561984539032
+Epoch: 71 | Train_loss: 0.49784 | Val loss: 0.57130 | val dice: 0.84814 @ (0.6, 3000, 0.4)
+Best Loss: 0.5660582780838013 | Best Dice: 0.854561984539032
+Epoch: 72 | Train_loss: 0.49437 | Val loss: 0.57225 | val dice: 0.85313 @ (0.6, 3000, 0.3)
+Early Stopping....@ 72 epoch for patience @ 10.0
+Best Loss: 0.5660582780838013 | Best Dice: 0.854561984539032
