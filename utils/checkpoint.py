@@ -64,7 +64,7 @@ def load_checkpoint(args, model, ckpt_name=None, checkpoint=None, optimizer=None
     return last_epoch, step
 
 
-def save_checkpoint(args, model, optimizer, epoch, metric_score=0, step=0, keep=10, weights_dict=None, name=None):
+def save_checkpoint(args, model, optimizer, epoch, step=0, keep=10, metric_score=None, weights_dict=None, name=None):
     checkpoint_dir = os.path.join(args.log_dir, args.model_name,  f'fold_{args.fold}', 'checkpoint')
 
     if name:

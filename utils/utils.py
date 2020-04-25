@@ -21,6 +21,7 @@ def prepare_train_directories(args):
 def update_avg(curr_avg, val, idx):
     return (curr_avg * idx + val) / (idx + 1)
 
+
 def accumulate(model1, model2, decay=0.99):
     par1 = model1.state_dict()
     par2 = model2.state_dict()
@@ -28,7 +29,8 @@ def accumulate(model1, model2, decay=0.99):
     with torch.no_grad():
         for k in par1.keys():
             par1[k].data.copy_(par1[k].data * decay + par2[k].data * (1 - decay))
-            
+
+
 def seed_everything(seed=1234):
     random.seed(seed)
     os.environ['PYTHONHASHSEED'] = str(seed)
@@ -148,3 +150,17 @@ def read_list_from_file(list_file, comment='#'):
             strings.append(s)
     return strings
 
+
+def get_mean_and_std(dataset):
+    '''Compute the mean and std value of dataset.'''
+    dataloader = torch.utils.data.DataLoader(dataset, batch_size=1, shuffle=True, num_workers=2)
+    mean = torch.zeros(3)
+    std = torch.zeros(3)
+    print('==> Computing mean and std..')
+    for inputs, targets in dataloader:
+        for i in range(3):
+            mean[i] += inputs[:,i,:,:].mean()
+            std[i] += inputs[:,i,:,:].std()
+    mean.div_(len(dataset))
+    std.div_(len(dataset))
+    return mean, std

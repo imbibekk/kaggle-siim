@@ -23,6 +23,9 @@ class Model:
         logits_mask = torch.mean(logits_mask, dim=0)
         return logits_mask
 
+    def eval(self):
+        pass
+
 
 class SIIM_Model(nn.Module):
     def __init__(self, encoder_name, decoder_name, num_class):

@@ -81,6 +81,40 @@ class PneumoSampler(Sampler):
         return self.n_positive + self.n_negative
 
 
+class EmptySampler(Sampler):
+    def __init__(self, data_source, positive_ratio_range, epochs):
+        super().__init__(data_source)
+        assert len(positive_ratio_range) == 2
+        self.positive_indices = np.where(data_source.non_emptiness == 1)[0]
+        self.negative_indices = np.where(data_source.non_emptiness == 0)[0]
+        self.positive_ratio_range = positive_ratio_range
+        self.positive_num: int = len(self.positive_indices)
+        self.current_epoch: int = 0
+        self.epochs: int = epochs
+
+    @property
+    def positive_ratio(self) -> float:
+        np.random.seed(self.current_epoch)
+        min_ratio, max_ratio = self.positive_ratio_range
+        return max_ratio - (max_ratio - min_ratio) / self.epochs * self.current_epoch
+
+    @property
+    def negative_num(self) -> int:
+        assert self.positive_ratio <= 1.0
+        return int(self.positive_num // self.positive_ratio - self.positive_num)
+
+    def __iter__(self):
+        negative_indices = np.random.choice(self.negative_indices, size=self.negative_num)
+        indices = np.random.permutation(np.hstack((negative_indices, self.positive_indices)))
+        return iter(indices.tolist())
+
+    def __len__(self) -> int:
+        return self.positive_num + self.negative_num
+
+    def set_epoch(self, epoch):
+        self.current_epoch = epoch
+
+
 
 def generate_transforms():
 
@@ -110,18 +144,21 @@ def generate_transforms():
     return train_transform, valid_transform
 
 
-def get_dataloader(data_dir, df, mode, demand_non_empty_proba=0.8, batch_size=64):
+def get_dataloader(args, df, mode):
     
     train_transform, valid_transform = generate_transforms()
 
-    datasets = SIIMDataset(df, data_dir, mode, transform=train_transform if mode =='train' else valid_transform)
+    datasets = SIIMDataset(df, args.data_dir, mode, transform=train_transform if mode =='train' else valid_transform)
     
     is_train = mode =='train'
     if is_train:
-        sampler = PneumoSampler(df, demand_non_empty_proba)
+        if args.sampler_name == 'EmptySampler':
+            sampler = EmptySampler(datasets, [0.2,0.8], args.num_epochs)
+        else:
+            sampler = PneumoSampler(df, args.demand_non_empty_proba)
 
     dataloader = DataLoader(datasets,
-                            batch_size=batch_size if is_train else 2*batch_size,
+                            batch_size=args.batch_size if is_train else 2*args.batch_size,
                             sampler=sampler if is_train else None, 
                             num_workers=4,
                             )

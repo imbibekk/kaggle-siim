@@ -121,7 +121,10 @@ def train(args, log, model, dataloaders, criterion, optimizer, scheduler, binari
     best_val_loss = 10.0
     best_dice_score = 0.0
     for epoch in range(start_epoch, num_epochs):
-
+        train_loader = dataloaders['train']
+        train_loader.sampler.set_epoch(epoch)
+        log.write(f'positive ratio: {train_loader.sampler.positive_ratio}\n')
+        
         # train phase
         train_loss = train_single_epoch(args, model, ema_model, dataloaders['train'], criterion, optimizer, epoch)
         
@@ -186,7 +189,7 @@ def run(args, log):
     else:
         last_epoch, step = -1, -1
 
-    dataloaders = {mode:get_dataloader(args.data_dir, dfs[mode], mode, args.positive_ratio, args.batch_size) for mode in ['train', 'val']}   
+    dataloaders = {mode:get_dataloader(args, dfs[mode], mode) for mode in ['train', 'val']}   
 
     scheduler = get_scheduler(args, optimizer, -1, dataloaders['train'])
 
@@ -211,8 +214,10 @@ def parse_args():
                     help='batch size')
     parser.add_argument('--num_epochs', type=int, default=50, 
                     help='num of epochs to train')
-    parser.add_argument('--positive_ratio', type=float, default=0.6, 
+    parser.add_argument('--positive_ratio', type=float, default=0.8, 
                     help='postive ratio rate for sliding sampling')
+    parser.add_argument('--sampler_name', type=str, default='PneumoSampler', 
+                    help='which sampler to use: PneumoSampler or EmptySampler')
     parser.add_argument('--loss_weights', type=dict, default={'bce': 1, 'dice': 1, 'focal': 1},
                     help='name of optimizer to use')
     parser.add_argument('--grad_clip', type=float, default=0.1,
